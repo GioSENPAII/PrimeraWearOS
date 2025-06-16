@@ -6,10 +6,11 @@ import androidx.wear.watchface.complications.data.PlainComplicationText
 import androidx.wear.watchface.complications.data.ShortTextComplicationData
 import androidx.wear.watchface.complications.datasource.ComplicationRequest
 import androidx.wear.watchface.complications.datasource.SuspendingComplicationDataSourceService
-import java.util.Calendar
+import com.example.miappwear.data.HealthRepository
+import kotlinx.coroutines.flow.first
 
 /**
- * Skeleton for complication data source that returns short text.
+ * Complicación que muestra el conteo de pasos actual
  */
 class MainComplicationService : SuspendingComplicationDataSourceService() {
 
@@ -17,20 +18,22 @@ class MainComplicationService : SuspendingComplicationDataSourceService() {
         if (type != ComplicationType.SHORT_TEXT) {
             return null
         }
-        return createComplicationData("Mon", "Monday")
+        return createComplicationData("8.5K", "8,500 pasos hoy")
     }
 
     override suspend fun onComplicationRequest(request: ComplicationRequest): ComplicationData {
-        return when (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
-            Calendar.SUNDAY -> createComplicationData("Sun", "Sunday")
-            Calendar.MONDAY -> createComplicationData("Mon", "Monday")
-            Calendar.TUESDAY -> createComplicationData("Tue", "Tuesday")
-            Calendar.WEDNESDAY -> createComplicationData("Wed", "Wednesday")
-            Calendar.THURSDAY -> createComplicationData("Thu", "Thursday")
-            Calendar.FRIDAY -> createComplicationData("Fri!", "Friday!")
-            Calendar.SATURDAY -> createComplicationData("Sat", "Saturday")
-            else -> throw IllegalArgumentException("too many days")
+        val healthRepository = HealthRepository(this)
+        val healthMetrics = healthRepository.healthMetrics.first()
+
+        val steps = healthMetrics.stepData.steps
+        val stepsText = when {
+            steps >= 1000 -> "${(steps / 1000.0).let { if (it % 1 == 0.0) it.toInt().toString() else "%.1f".format(it) }}K"
+            else -> steps.toString()
         }
+
+        val contentDescription = "$steps pasos hoy"
+
+        return createComplicationData(stepsText, contentDescription)
     }
 
     private fun createComplicationData(text: String, contentDescription: String) =

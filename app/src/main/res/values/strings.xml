@@ -1,10 +1,53 @@
 <resources>
-    <string name="app_name">MiAppWear</string>
+    <string name="app_name">Mi Salud Wear</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">From the Square world,\nHello, %1$s!</string>
-    <string name="tile_label">Example tile</string>
-    <string name="complication_label">Example complication</string>
+    <string name="tile_label">Mi Salud</string>
+    <string name="complication_label">Pasos</string>
+
+    <!-- Strings para la aplicación de salud -->
+    <string name="dashboard_title">Mi Salud</string>
+    <string name="steps_title">Pasos</string>
+    <string name="hydration_title">Hidratación</string>
+    <string name="settings_title">Configuración</string>
+
+    <!-- Strings para metas -->
+    <string name="daily_goal">Meta diaria</string>
+    <string name="steps_goal">Meta de pasos</string>
+    <string name="hydration_goal">Meta de hidratación</string>
+
+    <!-- Strings para acciones -->
+    <string name="add_water">Agregar agua</string>
+    <string name="record_activity">Registrar actividad</string>
+    <string name="quick_actions">Acciones rápidas</string>
+
+    <!-- Strings para notificaciones y recordatorios -->
+    <string name="activity_reminder">¡Hora de moverse!</string>
+    <string name="hydration_reminder">¡Tiempo de hidratarse!</string>
+    <string name="goal_achieved">¡Meta alcanzada!</string>
+
+    <!-- Strings para estadísticas -->
+    <string name="steps_remaining">restantes</string>
+    <string name="calories_burned">kcal</string>
+    <string name="distance_walked">Distancia</string>
+    <string name="glasses_remaining">vasos restantes</string>
+    <string name="liters_consumed">litros</string>
+    <string name="last_drink">Último vaso</string>
+
+    <!-- Strings para configuración -->
+    <string name="daily_goals">Metas diarias</string>
+    <string name="reminders">Recordatorios</string>
+    <string name="activity_reminders">Recordatorios de actividad</string>
+    <string name="app_info">Acerca de la app</string>
+    <string name="today_progress">Progreso de hoy</string>
+
+    <!-- Strings generales -->
+    <string name="back">Volver</string>
+    <string name="cancel">Cancelar</string>
+    <string name="close">Cerrar</string>
+    <string name="edit">Editar</string>
+    <string name="save">Guardar</string>
 </resources>
